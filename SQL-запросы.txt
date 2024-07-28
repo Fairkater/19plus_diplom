@@ -1,0 +1,19 @@
+1 задание
+
+SELECT "Couriers".login, COUNT("Orders".id) AS in_delivery_orders
+FROM "Couriers"
+JOIN "Orders" ON "Couriers".id = "Orders"."courierId"
+WHERE "Orders"."inDelivery" = true
+GROUP BY "Couriers".login;
+
+‌
+2 задание
+
+SELECT "Orders".track,
+CASE
+WHEN "Orders".finished = true THEN 2
+WHEN "Orders".cancelled = true THEN -1
+WHEN "Orders"."inDelivery" = true THEN 1
+ELSE 0
+END AS status
+FROM "Orders";
